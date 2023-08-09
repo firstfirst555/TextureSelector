@@ -1,0 +1,161 @@
+@import "/src/assets/styles/vars";
+
+$toolbar-item-width: 2rem;
+$toolbar-item-count: 4;
+$toolbar-item-input: 4.5rem;
+$toolbar-gap: 0.5rem;
+$toolbar-gap-count: 6;
+$toolbar-space-left-mat: 1.75rem;
+$toolbar-space-left-col: 2.25rem;
+$toolbar-space-left-dif: calc($toolbar-space-left-col - $toolbar-space-left-mat);
+
+:host {
+  display: flex;
+  position: relative;
+  width: calc(($toolbar-item-width * $toolbar-item-count) + $toolbar-item-input + ($toolbar-gap * $toolbar-gap-count) - $toolbar-space-left-dif - 1px);
+}
+
+.color-selector {
+  transition: all 0.3s linear;
+  width: auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 8px 24px 8px 12px;
+  border-radius: 4px;
+
+  .icon-color {
+    transition: all 0.3s linear;
+    font-weight: 600;
+    line-height: 14px;
+    letter-spacing: 0.1px;
+    color: #414141;
+  
+    width: 16px;
+    height: 16px;
+  }
+
+  &.state-default {
+    
+    .icon-color {
+      content: var(--img-color-default);
+    }
+  }
+
+  &.state-disabled {
+    .icon-color {
+      content: var(--img-color-disabled);
+    }
+  }
+
+  &.state-active {
+    .icon-color {
+      content: var(--img-color-active);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $defaults-white;
+    background: $primary-blue;
+
+    .icon-color {
+      content: var(--img-color-hint);
+    }
+  
+  }
+}
+
+
+.form-color {
+  max-width: 276px;
+  padding: 16px;
+  overflow: auto;
+}
+
+:host ::ng-deep color-picker {
+  display: block;
+  margin: 0;
+  max-width: 244px;
+}
+
+:host ::ng-deep .color-picker {
+  max-width: 244px;
+  border: none;
+}
+
+:host ::ng-deep .color-picker .saturation-lightness {
+  box-sizing: border-box;
+  width: 244px;
+  border-radius: 5px;
+}
+
+:host ::ng-deep .color-picker .hue-alpha {
+  margin: 0px;
+  padding: 0px;
+}
+
+:host ::ng-deep .color-picker div.right {
+  margin: 0px;
+  padding: 0px;
+}
+
+:host ::ng-deep .color-picker div.left {
+  display: none;
+}
+
+:host ::ng-deep .color-picker .cursor {
+  border: 2.64px solid #FFFFFF;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.24);
+}
+
+.color-input {
+  max-width: 240px;
+  max-height: 32px;
+  margin: 0;
+  padding: 0;
+
+  line-height: 16px;
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-model {
+  box-sizing: border-box;
+  width: 70px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font-weight: 600;
+  color: #292929;
+
+  display: flex;
+}
+
+.color-part {
+  box-sizing: border-box;
+  width: 48px;
+  height: 32px;
+  padding: 2px 12px;
+  border: 1px solid #E7E8EB;
+  border-radius: 4px;
+
+  font-weight: 400;
+  color: #414141;
+
+  display: flex;
+}
+
+.color-input.hex .color-part {
+  width: 102px;
+}

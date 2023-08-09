@@ -1,0 +1,43 @@
+<button form="form-color" class="color-selector toolbar-item {{ getIconStateColor() }}" (click)="onColorButtonClick()">
+  <img form="form-color" class="icon-color {{ getIconStateColor() }}"  />
+  <span form="form-color" class="{{ getIconStateColor() }}">{{ "CTE {Add Color Button}" | translate }}</span>
+</button>
+
+<div class="form-color form-select" *ngIf="isColorVisible" class="{{ colorModel }}" (clickOutside)="onOutsideClick($event)">
+  <div
+    [cpWidth]="'244'"
+    [cpAlphaChannel]="'disabled'"
+    [cpDisableInput]="true"
+    [cpOutputFormat]="'hex'"
+    [cpSaveClickOutside]="false"
+    [cpCloseClickOutside]="false"
+    [cpToggle]="true"
+    [cpDialogDisplay]="'inline'"
+    [cpCancelButton]="false"
+    (colorPickerChange)="onColorChange($event)"
+
+    [style.background]="colorValue"
+    [(colorPicker)]="colorValue">
+  </div>
+  <div class="color-input {{ colorModel }}">
+    <select type="dropdown" [(ngModel)]="colorModel" (change)="onColorModelChange()" class="color-model">
+        <!--<div class="color-input-popup">-->
+        <option value="rgba">RGB</option>
+        <option value="hsla">HSL</option>
+        <option value="hex">HEX</option>
+    <!--  </div>*/-->
+    </select>
+    <input type="text" [(ngModel)]="colorPart1" (input)="onColorInput()" class="color-part"/>
+    <input type="text" [(ngModel)]="colorPart2" (input)="onColorInput()" *ngIf="colorModel != 'hex'" class="color-part"/>
+    <input type="text" [(ngModel)]="colorPart3" (input)="onColorInput()" *ngIf="colorModel != 'hex'" class="color-part"/>
+  </div>
+  <div class="button-panel">
+    <button class="button button-ok" (click)="onApply()">
+      {{ '{Save}' | translate }}
+    </button>
+    <button class="button button-abort" (click)="onColorButtonClick()">
+      {{ '{Abort}' | translate }}
+    </button>
+  </div>
+</div>
+
